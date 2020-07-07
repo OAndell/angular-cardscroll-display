@@ -1,11 +1,9 @@
 .image{
-    width: 10vw;
-    height: 10vw;
-    border-radius: 50%;
+    max-width: 90%;
+    border-radius: 10%;
  }
 
  .image-wrapper{
-    object-fit: cover;
  }
 
  .entry-wrapper{
