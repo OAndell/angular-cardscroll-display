@@ -8,22 +8,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EntryService {
-  API_URL = "https://jsonplaceholder.typicode.com/photos"
-  API_URL2 = "https://www.reddit.com/r/pics.json"
-
+  BASE_URL = "https://www.reddit.com/r/"
+  JSON_STRING = ".json"
+  subreddit = "AbandonedPorn"
   lastLoaded:String = ""
+  onReloadCallback:Function;
 
   constructor(private http:HttpClient) { }
 
   getEntries(callback) {
-    let url;
-    if(this.lastLoaded === ""){
-      url = this.API_URL2;
-    }else{
-      url = this.API_URL2 + "?after="+this.lastLoaded;
+    let url = this.BASE_URL + this.subreddit + this.JSON_STRING;
+    if(this.lastLoaded !== ""){
+      url = url + "?after="+this.lastLoaded;
     }
-    console.log(url)
-
     this.http.get(url).subscribe((redditJSON)=>{
       const entries:Entry[] = [];
       this.lastLoaded = redditJSON.data.after;
@@ -33,13 +30,26 @@ export class EntryService {
         if(!post.data.is_self){
           let entry = new Entry();
           entry.title = post.data.title;
-          entry.image = post.data.url;
+          entry.image = this.isImage(post.data.url) ?  post.data.url :  post.data.thumbnail;
           entry.link = post.data.url;
           entries.push(entry)
         }
       });
-  
       callback(entries)
     });
+  }
+
+   isImage(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+   }
+
+  changeSub(subreddit){
+    this.subreddit = subreddit;
+    this.lastLoaded = "";
+    this.onReloadCallback();
+  }
+
+  registerOnReloadCallback(cb){
+    this.onReloadCallback = cb
   }
 }

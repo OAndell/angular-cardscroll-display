@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { EntryService } from "../../services/entry.service"
 
 @Component({
   selector: 'app-header',
@@ -6,12 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @ViewChild('subreddit') input:String; 
 
-  headerText:string = ""
+  text: String;
+  
+  constructor(private entryService:EntryService) { }
 
-  constructor() { }
 
   ngOnInit(): void {
+    this.text = this.entryService.subreddit;
+  }
+
+  onClick() {
+    this.entryService.changeSub(this.input.nativeElement.value);
   }
 
 }

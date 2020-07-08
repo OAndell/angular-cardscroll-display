@@ -6,8 +6,21 @@
     width: 100%;
     position: fixed;
     z-index: 999;
+    text-align: right;
   }
+.input_wrapper{
+  margin-right: 20px;
+  font-size: large;
+}
+.text_input{
+    padding: 7px;
+    background-color: #555;
+    color: white;
+    border: solid 1px;
+    border-color: black;
+    outline: none;
+}
 
-.text{
-    padding: 10px;
+.header_button{
+  padding: 7px;
 }

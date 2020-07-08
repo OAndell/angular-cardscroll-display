@@ -1,3 +1,6 @@
 <div class="header">
-    <h1 class="text">{{headerText}}</h1>
+    <div class="input_wrapper">
+        <label>reddit.com/r/</label><input class="text_input"  [value]="text" #subreddit>
+        <button class=header_button (click)="onClick()">Go</button>
+    </div>
 </div>

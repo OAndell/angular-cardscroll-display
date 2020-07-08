@@ -39,11 +39,17 @@ export class MainGridComponent implements OnInit {
 
   ngOnInit(): void {
     this.entryService.getEntries(this.getEntriesCallback);
+    this.entryService.registerOnReloadCallback(this.refreshListCallback);
   }
 
-  getEntriesCallback  = (results)=> {
+  getEntriesCallback = (results)=> {
     this.listToShow.push(...results);
-    //this.listToShow.push(...this.entryList.slice(0,10));
+  }
+
+  refreshListCallback = (results) => {
+    this.listToShow = [];
+    window.scroll(0,0);
+    this.entryService.getEntries(this.getEntriesCallback);
   }
 
   @HostListener('window:scroll', ['$event']) onWindowScroll($event) {
