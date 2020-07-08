@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener,  } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef} from '@angular/core';
 import { Entry } from '../../models/Entry';
 import {EntryService} from '../../services/entry.service';
 import {
@@ -20,7 +20,7 @@ import {
       transition('* => *', [
         query(':enter', [ style({opacity: 0})]),
         query(':enter', [
-          stagger(200 ,[animate(300, style({ opacity: 1 }))])
+          stagger(100 ,[animate(1000, style({ opacity: 1 }))])
         ], { optional: true }),
       ])
     ])
@@ -28,12 +28,14 @@ import {
 })
 
 export class MainGridComponent implements OnInit {
-
+  
   entryList:Entry[];
   listToShow:Entry[] = [];
   height:number = 12500;
   lastY = window.pageYOffset;
   yOffset = 0;
+  lastEntryID:string = "";
+  loadMoreFlag:boolean = true;
 
   constructor(private entryService:EntryService) { }
 
@@ -44,16 +46,21 @@ export class MainGridComponent implements OnInit {
 
   getEntriesCallback = (results)=> {
     this.listToShow.push(...results);
+    this.lastEntryID = this.listToShow[this.listToShow.length-1].id;
+    this.loadMoreFlag = true;
   }
 
-  refreshListCallback = (results) => {
+  refreshListCallback = () => {
     this.listToShow = [];
     window.scroll(0,0);
     this.entryService.getEntries(this.getEntriesCallback);
+    console.log(this.elRef.nativeElement.offsetLeft);
   }
 
   @HostListener('window:scroll', ['$event']) onWindowScroll($event) {
-    if(window.pageYOffset >= this.height/2){
+    const lastEntryElement = document.getElementById(this.lastEntryID);
+    if(this.loadMoreFlag && Math.abs(lastEntryElement.getBoundingClientRect().y) <= 100){
+      this.loadMoreFlag = false;
       this.height = this.height*1.5;
       this.entryService.getEntries(this.getEntriesCallback);
     }

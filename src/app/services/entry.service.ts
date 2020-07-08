@@ -32,6 +32,7 @@ export class EntryService {
           entry.title = post.data.title;
           entry.image = this.isImage(post.data.url) ?  post.data.url :  post.data.thumbnail;
           entry.link = post.data.url;
+          entry.id = post.data.name;
           entries.push(entry)
         }
       });

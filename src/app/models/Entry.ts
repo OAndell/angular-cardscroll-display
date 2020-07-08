@@ -3,4 +3,5 @@ export class Entry{
     image:string;
     link:string;
     description:string;
+    id:string;
 }

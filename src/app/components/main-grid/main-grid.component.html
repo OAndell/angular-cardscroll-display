@@ -1,5 +1,5 @@
 <div class="wrapper" [@fade]="listToShow.length" [ngStyle]="{'height': height+'px'}">
     <app-entry class="item" 
     *ngFor="let entry of listToShow"
-    [entry]="entry" ></app-entry>
+    [entry]="entry" id="{{entry.id}}"></app-entry>
 </div>
