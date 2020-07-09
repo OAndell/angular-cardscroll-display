@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class EntryService {
   BASE_URL = "https://www.reddit.com/r/"
   JSON_STRING = ".json"
-  subreddit = "AbandonedPorn"
+  subreddit = "Art+Photografy+ITookAPicture"
   lastLoaded:String = ""
   onReloadCallback:Function;
 
@@ -21,7 +21,7 @@ export class EntryService {
     if(this.lastLoaded !== ""){
       url = url + "?after="+this.lastLoaded;
     }
-    this.http.get(url).subscribe((redditJSON)=>{
+    this.http.get(url).subscribe((redditJSON:any)=>{
       const entries:Entry[] = [];
       this.lastLoaded = redditJSON.data.after;
       const posts = redditJSON.data.children;

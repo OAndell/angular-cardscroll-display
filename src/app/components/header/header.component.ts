@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { EntryService } from "../../services/entry.service"
 
 @Component({
@@ -7,9 +7,9 @@ import { EntryService } from "../../services/entry.service"
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @ViewChild('subreddit') input:String; 
+  @ViewChild('subreddit') input:ElementRef; 
 
-  text: String;
+  text: string;
   
   constructor(private entryService:EntryService) { }
 

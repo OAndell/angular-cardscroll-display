@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ElementRef} from '@angular/core';
+import { Component, OnInit, HostListener} from '@angular/core';
 import { Entry } from '../../models/Entry';
 import {EntryService} from '../../services/entry.service';
 import {
@@ -29,7 +29,6 @@ import {
 
 export class MainGridComponent implements OnInit {
   
-  entryList:Entry[];
   listToShow:Entry[] = [];
   height:number = 12500;
   lastY = window.pageYOffset;
@@ -54,7 +53,6 @@ export class MainGridComponent implements OnInit {
     this.listToShow = [];
     window.scroll(0,0);
     this.entryService.getEntries(this.getEntriesCallback);
-    console.log(this.elRef.nativeElement.offsetLeft);
   }
 
   @HostListener('window:scroll', ['$event']) onWindowScroll($event) {
