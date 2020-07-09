@@ -30,7 +30,7 @@ import {
 export class MainGridComponent implements OnInit {
   
   listToShow:Entry[] = [];
-  height:number = 12500;
+  height:number = 10000;
   lastY = window.pageYOffset;
   yOffset = 0;
   lastEntryID:string = "";

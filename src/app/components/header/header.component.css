@@ -13,7 +13,7 @@
   font-size: large;
 }
 .text_input{
-    padding: 7px;
+    padding: 10px;
     background-color: #555;
     color: white;
     border: solid 1px;
@@ -21,6 +21,10 @@
     outline: none;
 }
 
+
 .header_button{
-  padding: 7px;
+  border: solid 1px;
+  border-color: black;
+  margin-left: 5px;
+
 }

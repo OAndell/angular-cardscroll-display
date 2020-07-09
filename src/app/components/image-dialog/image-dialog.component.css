@@ -1,0 +1,9 @@
+.dialog_image{
+    display: block;
+    width: auto;
+    max-height: 80vh;  
+}
+
+.dialog_text{
+    max-width: 40vw;
+}

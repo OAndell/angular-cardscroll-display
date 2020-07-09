@@ -7,8 +7,14 @@ import { AppComponent } from './app.component';
 import { MainGridComponent } from './components/main-grid/main-grid.component';
 import { EntryComponent } from './components/entry/entry.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
 import { HeaderComponent } from './components/header/header.component';
+import {ImageDialogComponent } from './components/image-dialog/image-dialog.component';
+
+
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -16,14 +22,17 @@ import { HeaderComponent } from './components/header/header.component';
     AppComponent,
     MainGridComponent,
     EntryComponent,
-    HeaderComponent
+    HeaderComponent,
+    ImageDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
-    HttpClientModule
+    MatButtonModule,
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
