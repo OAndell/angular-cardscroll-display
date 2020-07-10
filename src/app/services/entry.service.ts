@@ -26,10 +26,11 @@ export class EntryService {
       const posts = redditJSON.data.children;
       posts.forEach(post => {
         if(!post.data.is_self){
+          console.log(post);
           let entry = new Entry();
           entry.title = post.data.title;
           entry.image = this.isImage(post.data.url) ?  post.data.url :  post.data.thumbnail;
-          entry.link = post.data.url;
+          entry.link = "https://www.reddit.com" + post.data.permalink;
           entry.id = post.data.name;
           entries.push(entry)
         }

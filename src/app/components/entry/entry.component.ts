@@ -19,14 +19,11 @@ export class EntryComponent implements OnInit {
 
   onClick(){
     const dialogRef = this.dialog.open(ImageDialogComponent, {
-      data: this.entry
+      data: this.entry,
+      autoFocus: false
     });
-    
-    
-    /*dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });*/
-   //window.open(this.entry.link);
   }
 
 }
+
+

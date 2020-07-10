@@ -17,5 +17,9 @@ export class ImageDialogComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.entry.image)
   }
+  
+  gotoLink(){
+    window.open(this.entry.link);
+  }
 
 }
