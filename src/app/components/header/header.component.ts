@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
   
   constructor(private entryService:EntryService) { }
 
-
   ngOnInit(): void {
     this.text = this.entryService.subreddit;
   }
